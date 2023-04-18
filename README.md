@@ -8,9 +8,19 @@ First figure is Building Height Estimation. Using Kalman Filter for prediction t
 ![EstimationFigure](https://user-images.githubusercontent.com/74204842/232813725-58a03f18-a306-4b04-b51c-bd0eebd7e698.png)
 
 
-Second figure is Kalman Gain. The Kalman Gain is important parameter for Kalman Filter. It is updated at each iteration of the Kalman filter, based on the most recent measurement and the current state estimate. It is used to adjust the predicted state estimate to better match the measurements, while also accounting for the inherent uncertainty and noise in both the measurements and the system dynamics. Kalman Gain gets closer to zero thus our system becomes more and more precise.
+
+
+
+
+
+Second figure is Kalman Gain. The Kalman Gain is important parameter for Kalman Filter. 
+
+The Kalman Gain is updated at each iteration of the Kalman filter, based on the most recent measurement and the current state estimate. It is used to adjust the predicted state estimate to better match the measurements, while also accounting for the inherent uncertainty and noise in both the measurements and the system dynamics. Kalman Gain gets closer to zero thus our system becomes more and more precise.
 
 ![KalmanGain](https://user-images.githubusercontent.com/74204842/232813747-b974d9a6-1a33-4127-a537-937c179fd89a.png)
+
+
+
 
 # Kalman Filter
 
