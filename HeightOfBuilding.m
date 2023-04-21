@@ -1,11 +1,11 @@
 % References
-% Problem is example 5, https://www.kalmanfilter.net/kalman1d.html but different measurement value
+% Problem is example 5, https://www.kalmanfilter.net/kalman1d.html 
 % Matlab Plotting https://www.mathworks.com/help/matlab/ref/plot.html 
 
 % Define system model
 x_true = 50; %True Height of Buildings
-z = [48.54, 47.11, 55.01, 55.15, 49.89, 40.85, 46.72, 50.05, 51.27, 49.95];% Simulate measurement
-R = 25; % Measurement noise covariance
+z = [47.84, 48.31, 52.56, 54.17, 49.37, 42.56, 46.73, 52.62, 50.85, 49.76];% Simulate measurement
+R = 49; % Measurement noise covariance
 
 % Set initial values
 N = length(z);  % Number of measurements
@@ -18,7 +18,7 @@ P(1) = 225; % Initial error covariance
 P_minus(1) = 225; % Initial predicted error covariance
 
 % Initialize the first value of K using the first value of P_minus
-K(1) = P_minus(1)/(P_minus(1) + R); % Initial Kalman gain
+ K(1) = P_minus(1)/(P_minus(1) + R); % Initial Kalman gain
 
 % Initialize the state estimate
 x_hat(1) = 60; % Initial state estimate
@@ -53,6 +53,7 @@ xlabel('Measurement Number');
 ylabel('Height(m)');
 legend('Measurement', 'Estimation', 'True Value', 'Initialization');
 title('Kalman Filter for Building Height Estimation');
+axis ([0 11 40 65]);
 
 % Plot Kalman Gain
 figure;
@@ -60,3 +61,4 @@ plot(t, K, 'bo-', 'LineWidth', 1); % Kalman Gain values against the measurement 
 title('Kalman Gain');
 xlabel('Measurement Number');
 ylabel('Kalman Gain');
+axis ([0 11 0 0.9]);
