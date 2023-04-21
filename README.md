@@ -3,7 +3,7 @@ I got this example from this [link](https://www.kalmanfilter.net/kalman1d.html) 
 
 Firstly, let's explain basically how is the Kalman Filter and how can be used it?
 
-## How it Works?
+## How it Works? (Brief Description of Kalman Filter)
 The Kalman filter is a mathematical algorithm that is used to estimate the state of a dynamic system based on a series of noisy measurements.
 The Kalman filter works by combining a prediction of the system's state with a measurement of the system's state, using a weighted average based on the relative uncertainty of each source of information. The filter uses a state model that describes how the system evolves over time, and a measurement model that describes how the measurements relate to the system state.
 
@@ -11,39 +11,40 @@ At each iteration of the algorithm, the filter makes a prediction of the system'
 
 The Kalman filter is particularly useful when the measurements are noisy or incomplete, and when the system dynamics are subject to uncertainty or random disturbances. By combining information from multiple sources and accounting for the uncertainty in each source, the Kalman filter can provide a more accurate and reliable estimate of the system's state than would be possible using only the measurements or the state model alone.
 
-### Our Problem is Height of Building Estimation
+## Our Problem is Height of Building Estimation
 
 Let's explain the our problem and how can we solve this. We know that the height of building cannot change at least during the short measurement process. In our problem is given that;
-The true building height is 50 meters. (x_true = 50m)
-The altimeter measurement error (standard deviation) is 7 meters(σ = 49)
-The ten measurements are: 47.84m, 48.31m, 52.56m, 54.17m, 49.37m, 42.56m, 46.73m, 52.62m, 50.85m, 49.76m. (z = [47.84, 48.31, 52.56, 54.17, 49.37, 42.56, 46.73, 52.62, 50.85, 49.76];% Simulate measurement)
 
-#### ZEROTH ITERATION
-##### Initialization
+- The true building height is 50 meters. (x_true = 50m)
+- The altimeter measurement error (standard deviation) is 7 meters. (σ = 49)
+- The ten measurements are: 47.84m, 48.31m, 52.56m, 54.17m, 49.37m, 42.56m, 46.73m, 52.62m, 50.85m, 49.76m. (z = [47.84, 48.31, 52.56, 54.17, 49.37, 42.56, 46.73, 52.62, 50.85, 49.76])
+
+### ZEROTH ITERATION
+#### Initialization
 The estimated height of the building for the initialization purpose is x_hat = 60m
 
 Now we shall initialize the estimate variance. Estimate variance is also stated estimate uncertanity. 
 A human estimation error (standard deviation) is about 15 meters: σ=15. Consequently the variance is 225: σ2=225 so P(1) = 225
 
-##### Prediction
+#### Prediction
 Now, we shall predict the next state based on the initialization values.
 <br />
 Since our system's Dynamic Model is constant so, x_hat_minus = x_hat = 60m
 <br />
 The estimate variance also doesn't change so, P_minus(1) = P(1) = 225.
 
-#### FIRST ITERATION
+### FIRST ITERATION
 
-##### STEP 1; MEASURE
+#### STEP 1; MEASURE
 The first measurement z_1=49.03m
 Since the standard deviation ( σ ) of the altimeter measurement error is 7, the variance ( σ2=49 ) would be 49, thus, the measurement variance is: r_1=49
 
-##### STEP 2; PREDICT
+#### STEP 2; PREDICT
 Prediction of current state, x_hat_minus(t) = x_hat(t-1) 
 <br />
 Prediction of error uncertainity, P_minus(t) = P(t-1)
 
-##### STEP 3; UPDATE
+#### STEP 3; UPDATE
 Calculation of Kalman Gain, K_1= (P_minus)/(P_minus+r_1) = 225/225+25 = 0.9
 <br />
 Update of current state, x_hat(t) = x_hat_minus(t) + K_1*(z_1 - x_hat_minus(t)) = 60 + 0.9*(48.54−60) = 49.69m
@@ -67,3 +68,16 @@ The Kalman Gain is updated at each iteration of the Kalman filter, based on the 
 ![KalmanGain](https://user-images.githubusercontent.com/74204842/233624391-9ae68e0b-08a8-4a53-8db8-dfc189671fd7.png)
 
 [From this link](https://github.com/gulsenece/HeightOfBuilding/blob/main/HeightOfBuilding.m) you can reach my code that I wrote in MATLAB.
+
+## Code Description 
+The code estimates the state of a system based on noisy measurements.
+
+A brief description of what the code is doing:
+- The loop iterates over the length of the measurement vector z.
+- In each iteration, the current estimate of the state x_hat is used to simulate the state of the system. This is usually done using a model of the system dynamics.
+- The state is then predicted forward in time based on the previous estimate x_hat, and the error covariance P is also predicted.
+- The Kalman gain K is then computed based on the predicted error covariance and the measurement noise covariance R.
+- Finally, the state estimate and error covariance are updated based on the Kalman gain and the difference between the measured value z(t) and the predicted state x_hat_minus.
+
+
+If you have any comment please inform me:)
