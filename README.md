@@ -21,35 +21,31 @@ Let's explain the our problem and how can we solve this. We know that the height
 
 ### ZEROTH ITERATION
 #### Initialization
-The estimated height of the building for the initialization purpose is x_hat = 60m
+- The estimated height of the building for the initialization purpose is x_hat = 60m
 
 Now we shall initialize the estimate variance. Estimate variance is also stated estimate uncertanity. 
-A human estimation error (standard deviation) is about 15 meters: σ=15. Consequently the variance is 225: σ2=225 so P(1) = 225
+- A human estimation error (standard deviation) is about 15 meters: σ=15. Consequently the variance is 225: σ2=225 so P(1) = 225
 
 #### Prediction
 Now, we shall predict the next state based on the initialization values.
-<br />
-Since our system's Dynamic Model is constant so, x_hat_minus = x_hat = 60m
-<br />
-The estimate variance also doesn't change so, P_minus(1) = P(1) = 225.
+
+- Since our system's Dynamic Model is constant so, x_hat_minus = x_hat = 60m
+- The estimate variance also doesn't change so, P_minus(1) = P(1) = 225.
 
 ### FIRST ITERATION
 
 #### STEP 1; MEASURE
-The first measurement z_1=49.03m
-Since the standard deviation ( σ ) of the altimeter measurement error is 7, the variance ( σ2=49 ) would be 49, thus, the measurement variance is: r_1=49
+- The first measurement z_1=47.84m
+- Since the standard deviation ( σ ) of the altimeter measurement error is 7, the variance ( σ2=49 ) would be 49, thus, the measurement variance is: r_1=49
 
 #### STEP 2; PREDICT
-Prediction of current state, x_hat_minus(t) = x_hat(t-1) 
-<br />
-Prediction of error uncertainity, P_minus(t) = P(t-1)
+- Prediction of current state, x_hat_minus(t) = x_hat(t-1) 
+- Prediction of error uncertainity, P_minus(t) = P(t-1)
 
 #### STEP 3; UPDATE
-Calculation of Kalman Gain, K_1= (P_minus)/(P_minus+r_1) = 225/225+25 = 0.9
-<br />
-Update of current state, x_hat(t) = x_hat_minus(t) + K_1*(z_1 - x_hat_minus(t)) = 60 + 0.9*(48.54−60) = 49.69m
-<br />
-Update of error uncertainity, P(t) = (1 - K_1)*P_minus(1) = (1–0.9)*225 = 22.5
+- Calculation of Kalman Gain, K_1= (P_minus)/(P_minus+r_1) = 225/225+25 = 0.9
+- Update of current state, x_hat(t) = x_hat_minus(t) + K_1*(z_1 - x_hat_minus(t)) = 60 + 0.9*(48.54−60) = 49.69m
+- Update of error uncertainity, P(t) = (1 - K_1)*P_minus(1) = (1–0.9)*225 = 22.5
 
 Iteration is continued until the 10th iteration.
 
