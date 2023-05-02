@@ -44,7 +44,7 @@ Now, we shall predict the next state based on the initialization values.
 
 #### STEP 3; UPDATE
 - Calculation of Kalman Gain, K_1= (P_minus)/(P_minus+r_1) = 225/225+25 = 0.9
-- Update of current state, x_hat(t) = x_hat_minus(t) + K_1*(z_1 - x_hat_minus(t)) = 60 + 0.9*(48.54−60) = 49.69m
+- Update of current state, x_hat(t) = x_hat_minus(t) + K_1*(z_1 - x_hat_minus(t)) = 60 + 0.9*(47.87−60) = 49.083m
 - Update of error uncertainity, P(t) = (1 - K_1)*P_minus(1) = (1–0.9)*225 = 22.5
 
 Iteration is continued until the 10th iteration.
